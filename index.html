@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pháo hoa</title>
+    <style>
+        body,
+        html {
+            height: 100%;
+            width: 100%;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: Garamond, sans-serif;
+            overflow: hidden;
+            flex-direction: column;
+            text-align: center;
+            position: relative;
+        }
+
+        #c {
+            background-color: #ffffff;
+        }
+
+        canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: -1;
+        }
+
+        #btn {
+            height: 55px;
+            width: 75px;
+            cursor: pointer;
+            background-color: #ce4f6a00;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            transition: all 0.3s ease-in-out;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: opacity 0.3s ease;
+        }
+
+        #btnYes,
+        #btnNo {
+            padding: 10px 20px;
+            font-size: 16px;
+		font-family: 'Garamond', sans-serif;
+            cursor: pointer;
+            background-color: #ce4f6a;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            transition: all 0.3s ease-in-out;
+            margin: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        h1,
+        p {
+            transition: opacity 0.3s ease;
+            font-family: 'Garamond', 'Garamond', sans-serif;
+        }
+
+        .hide {
+            display: none;
+        }
+
+        .show {
+            opacity: 1;
+        }
+
+        #btn img {
+            width: 60px;
+            height: 40px;
+        }
+
+        @keyframes shake {
+            0% {
+                transform: translateX(0);
+            }
+
+            25% {
+                transform: translateX(-5px);
+            }
+
+            50% {
+                transform: translateX(5px);
+            }
+
+            75% {
+                transform: translateX(-5px);
+            }
+
+            100% {
+                transform: translateX(5px);
+            }
+        }
+
+        .shake {
+            animation: shake 0.5s ease-in-out;
+        }
+
+        #btn:hover,
+        #btnYes:hover,
+        #btnNo:hover {
+            background-color: #d37da8;
+            transform: translateY(-4px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        #btn:active,
+        #btnYes:active,
+        #btnNo:active {
+            transform: translateY(2px);
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+        }
+
+        .message {
+            display: none;
+            font-size: 16px;
+            margin: 10px;
+            padding: 30px;
+            border: 2px solid #f19fb3;
+            border-radius: 8px;
+            background-color: #ffffff;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            max-width: 90%;
+            overflow: hidden;
+            word-wrap: break-word;
+            transform: perspective(500px) rotateY(10deg);
+            transition: all 0.3s ease-in-out;
+        }
+
+        .message.show {
+            transform: perspective(500px) rotateY(0deg);
+        }
+
+        .div-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            max-width: 100%;
+            overflow: hidden;
+            margin: 10px 0;
+        }
+
+        .message-text {
+            font-size: 16px;
+            display: block;
+            padding: 30px;
+            border: 2px solid #f19fb3;
+            border-radius: 10px;
+            background-color: #ffffff;
+            text-align: center;
+            margin-bottom: 30px;
+            transform: perspective(500px) rotateY(10deg);
+            transition: all 0.3s ease-in-out;
+        }
+
+        .message-text.show {
+            transform: perspective(500px) rotateY(0deg);
+        }
+    </style>
+</head>
+
+<body id="playBtn">
+    <audio id="audio" src="./Jamie Miller - Long Way Home (Official Audio).mp3"></audio>
+    <canvas id="c" width="948" height="586"></canvas>
+    <div>
+        <h1 id="messageTitle">A love letter is waiting for you 💖</h1>
+        <p id="messageText">Open it now, my baby</p>
+        <button id="btn">
+            <img src="./letters.png" alt="Description">
+        </button>
+        <div class="message">
+		<p>
+		💌 <strong>2-Month Anniversary – To My Sweet Baby</strong> 💌
+
+    		<p>
+        		Of course, to someone like me — someone who never truly believed in the future — two months may seem so short.  
+			<br><br>
+        		But these past two months with you… <strong>you’ve made me believe in love.</strong>  
+			<br>
+        		You’ve brought dreams back into my heart.  
+			<br>
+        		You’ve made me think about <em>our</em> future.  
+			<br>
+        		You’ve made me think about marriage.  
+			<br><br>
+        		And most importantly, <em>you</em> are the one who changed me — in the most beautiful, positive way.
+    		</p>
+	</div>
+        <div class="message">
+		<p>
+        		I know I didn’t have time to prepare a gift for this special day,  
+			<br>
+        		but I hope these words will wrap around your heart like a hug you can always come home to.
+    		</p>
+	</div>
+
+        <div class="message">
+		<p>
+        		Thank you for being patient with me,  
+        		for listening,  
+        		for the laughter,  
+        		and for staying.  
+			<br><br>
+        		I may not have a gift tied with a ribbon this time,  
+        		but I give you something far more precious —  
+			<br><br>
+        		<strong>my heart, my loyalty,</strong>
+			<br>
+			and  
+			<br>
+        		<strong>my promise that I will always try, always love you, and always choose us.</strong>
+    		</p>
+	</div>
+
+        <div class="message">
+		<p>
+        		From now on, through every smile, every silence, every mistake, and every tender kiss —  
+			<br><br>
+        		<strong>I want to keep writing this story with you.</strong>  
+			<br><br>
+			Not just the easy chapters, but the messy ones too —  
+			<br>
+    			the nights we don’t understand each other,  
+			<br>
+    			the mornings we wake up and try again,  
+			<br>
+    			the ordinary days that become special simply because we’re together.
+    		</p>
+	</div>
+
+        <div class="message">
+		<p>
+        		No matter how many times I say it, it never feels like enough:  
+        		<br><br>
+        		<strong>I love you.</strong> ❤️  
+			<br><br>
+        		And I’m not going anywhere.
+			<br>
+			Not today. Not ever.  
+    			<br><br>
+    			<strong>This is where I choose to be — with you, always.</strong>
+    		</p>
+	</div>
+
+        <div class="message">
+		<p>
+        		I will keep loving you more and more with each passing day,  
+        		and I truly hope that will never change.
+    		</p>
+
+    		<p>
+        		Here’s to more months, more moments, and more beautiful memories — <em>with you.</em> 🥂
+    		</p>
+
+    		<p>
+        		Forever yours,  
+        		<br>
+        		<strong>Your wifey 💗</strong>
+    		</p>
+	</div>
+
+        <div id="msgYes" class="message-text" style="display: none;">
+		<p>
+    			<strong>Remember when you said you wanted to be the one holding me while I watched the fireworks?</strong>  
+    			<br><br>
+    			I’ve been thinking about that lately… and honestly,  
+    			I really hope that person is you —  
+			<br>
+    			the one who takes me to all the Disneylands,  
+			<br>
+    			the one I marry,  
+			<br>
+    			the one I think of when I dream about a fairytale love.  
+		</p>
+
+		<p>
+    			But hey, don’t just watch me, okay?  
+    			Let’s watch the fireworks <strong>together</strong> —  
+    			side by side, hand in hand. 🎆💙💚
+		</p>
+
+		<p>
+    		<strong>So… what do you say? Wanna watch some fireworks with me to celebrate our 2-month anniversary, wifey?</strong> 😘💖
+		</p>💕
+	</div>
+        <div class="div-buttons">
+            <button id="btnYes" style="display: none;">Yesss, my love~🥰</button>
+            <button id="btnNo" style="display: none;">Hmmmm...🤔</button>
+        </div>
+    </div>
+    <script src="./script.js"> </script>
+    <script>
+        document.body.addEventListener("click", function () {
+            var audio = document.getElementById("audio");
+            audio.play();
+        });
+    </script>
+
+</body>
+
+</html>
